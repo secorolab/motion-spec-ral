@@ -1,0 +1,48 @@
+{
+  "@context": {
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "app": "https://comp-rob2b.github.io/metamodels/application/",
+    "import": {
+      "@id": "app:import",
+      "@type": "@id",
+      "@context": {
+        "@base": "https://secorolab.github.io/models/"
+      }
+    },
+    "constraints": {
+      "@id": "app:constraints",
+      "@type": "@id",
+      "@container": "@set",
+      "@context": {
+        "@base": "https://secorolab.github.io/"
+      }
+    }
+  },
+  "@id": "https://secorolab.github.io/models/demo/application.json",
+  "@graph": [
+    {
+      "import": [
+        "complete/01-world-model.json",
+        "complete/02-view.json",
+        "complete/03-constraints.json",
+        "complete/04-motion-specification.json",
+        "complete/05-constraint-handler.json",
+        "complete/06-solver-specification.json",
+        "complete/misc.json"
+      ],
+      "constraints": [
+        "metamodels/geometry/spatial-relations.ttl",
+        "metamodels/geometry/coordinates.ttl",
+        "metamodels/geometry/spatial-operators.ttl",
+        "metamodels/view.ttl",
+        "metamodels/task/constraint.ttl",
+        "metamodels/task/motion-specification.ttl",
+        "metamodels/task/constraint-handler.ttl",
+        "metamodels/task/solver-specification.ttl"
+      ],
+      "iri-map": {
+        "https://comp-rob2b.github.io/": "comp-rob2b/"
+      }
+    }
+  ]
+}

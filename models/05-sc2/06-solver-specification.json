@@ -1,0 +1,92 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/task/solver-specification.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/solver-specification.json",
+  "@graph": [
+    {
+      "@id": "spec-frc-rightarm-ee",
+      "@type": "CartesianForceSpecification",
+      "force": "wrench-rightarm-dist-ee",
+      "attached-to": "link-rightarm-ee"
+    },
+    {
+      "@id": "prio-rightarm-sc2",
+      "@type": "PrioritizationLevel",
+      "motion-drivers": [
+        "spec-acc-rightarm-ee",
+        "spec-frc-rightarm-ee-z",
+        "spec-frc-rightarm-elbow",
+        "spec-frc-rightarm-ee"
+      ]
+    },
+    {
+      "@id": "drv-rightarm-sc2",
+      "@type": "MotionDrivers",
+      "acceleration-constraint": ["spec-acc-rightarm-ee"],
+      "cartesian-force": [
+        "spec-frc-rightarm-ee-z",
+        "spec-frc-rightarm-elbow",
+        "spec-frc-rightarm-ee"
+      ],
+      "joint-force": [],
+      "prioritization-hierarchy": ["prio-rightarm-sc2"]
+    },
+    {
+      "@id": "slv-rightarm-sc2",
+      "@type": "SolverWithInputAndOutput",
+      "motion-drivers": ["drv-rightarm-sc2"],
+      "output": [
+        "pose-rightarm-elbow-ee",
+        "pose-rightarm-shoulder-ee",
+        "twist-rightarm-shoulder-ee"
+      ],
+      "gravity": "uniform-gravitational-field",
+      "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
+    },
+
+    {
+      "@id": "spec-frc-leftarm-ee",
+      "@type": "CartesianForceSpecification",
+      "force": "wrench-leftarm-dist-ee",
+      "attached-to": "link-leftarm-ee"
+    },
+    {
+      "@id": "prio-leftarm-sc2",
+      "@type": "PrioritizationLevel",
+      "motion-drivers": [
+        "spec-acc-leftarm-ee",
+        "spec-frc-leftarm-ee-z",
+        "spec-frc-leftarm-elbow",
+        "spec-frc-leftarm-ee"
+      ]
+    },
+    {
+      "@id": "drv-leftarm-sc2",
+      "@type": "MotionDrivers",
+      "acceleration-constraint": ["spec-acc-leftarm-ee"],
+      "cartesian-force": [
+        "spec-frc-leftarm-ee-z",
+        "spec-frc-leftarm-elbow",
+        "spec-frc-leftarm-ee"
+      ],
+      "joint-force": [],
+      "prioritization-hierarchy": ["prio-leftarm-sc2"]
+    },
+    {
+      "@id": "slv-leftarm-sc2",
+      "@type": "SolverWithInputAndOutput",
+      "motion-drivers": ["drv-leftarm-sc2"],
+      "output": [
+        "pose-leftarm-elbow-ee",
+        "pose-leftarm-shoulder-ee",
+        "twist-leftarm-shoulder-ee"
+      ],
+      "gravity": "uniform-gravitational-field",
+      "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+    "https://comp-rob2b.github.io/metamodels/view.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/motion-specification.json",
+  "@graph": [
+    {
+      "@id": "view-frc-leftarm-ee-anterior",
+      "@type": ["View", "WrenchCoordinateView", "AxisAligned"],
+      "source": "wrench-leftarm-ee-anterior",
+      "target": "frc-leftarm-ee-anterior",
+      "subspace": "force",
+      "axis": "z"
+    },
+    {
+      "@id": "view-linvel-leftarm-shoulder-ee-vert",
+      "@type": ["View", "VelocityTwistCoordinateView", "AxisAligned"],
+      "source": "twist-leftarm-shoulder-ee-platform",
+      "target": "linvel-leftarm-shoulder-ee-vert",
+      "subspace": "linear-velocity",
+      "axis": "z"
+    },
+    {
+      "@id": "view-pos-leftarm-shoulder-elbow-height",
+      "@type": ["View", "PoseCoordinateView", "AxisAligned"],
+      "source": "pose-leftarm-platform-elbow",
+      "target": "pos-leftarm-platform-elbow-height",
+      "subspace": "position",
+      "axis": "z"
+    },
+    {
+      "@id": "view-angvel-leftarm-shoulder-ee-frontal",
+      "@type": ["View", "VelocityTwistCoordinateView", "AxisAligned"],
+      "source": "twist-leftarm-shoulder-ee-platform",
+      "target": "angvel-leftarm-shoulder-ee-frontal",
+      "subspace": "angular-velocity",
+      "axis": "x"
+    },
+    {
+      "@id": "view-angvel-leftarm-shoulder-ee-longitudinal",
+      "@type": ["View", "VelocityTwistCoordinateView", "AxisAligned"],
+      "source": "twist-leftarm-shoulder-ee-platform",
+      "target": "angvel-leftarm-shoulder-ee-longitudinal",
+      "subspace": "angular-velocity",
+      "axis": "y"
+    },
+    {
+      "@id": "view-linvel-leftarm-shoulder-ee-horiz",
+      "@type": ["View", "VelocityTwistCoordinateView", "AxisAligned"],
+      "source": "twist-leftarm-shoulder-ee-platform",
+      "target": "linvel-leftarm-shoulder-ee-horiz",
+      "subspace": "linear-velocity",
+      "axis": "y"
+    },
+    {
+      "@id": "view-frc-leftarm-elbow",
+      "@type": ["View", "WrenchCoordinateView", "AxisAligned"],
+      "source": "wrench-leftarm-elbow-platform",
+      "target": "frc-leftarm-elbow",
+      "subspace": "force",
+      "axis": "z"
+    }
+  ]
+}

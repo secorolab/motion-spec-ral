@@ -1,0 +1,18 @@
+{
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/coordinates.json",
+        {
+            "@base": "https://secorolab.github.io/models/demo/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/demo/motion-specification.json",
+    "@graph": [
+        {
+            "@id": "earth-uniform-gravitational-field",
+            "@type": "UniformGravitationalField",
+            "along": "vec-platform-z",
+            "unit": "N-M2-PER-SEC2",
+            "value": "9.81"
+        }
+    ]
+}

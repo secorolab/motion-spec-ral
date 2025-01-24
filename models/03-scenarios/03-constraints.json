@@ -1,0 +1,33 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/task/constraint.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/constraints.json",
+  "@graph": [
+    {
+      "@id": "cstr-dist-rightarm-shoulder-ee",
+      "@type": [
+        "Constraint",
+        "BilateralConstraint",
+        "LinearDistanceConstraint"
+      ],
+      "quantity": "dist-rightarm-shoulder-ee",
+      "lower-threshold": "dist-rightarm-shoulder-ee-lower",
+      "upper-threshold": "dist-rightarm-shoulder-ee-upper"
+    },
+    {
+      "@id": "cstr-dist-leftarm-shoulder-ee",
+      "@type": [
+        "Constraint",
+        "BilateralConstraint",
+        "LinearDistanceConstraint"
+      ],
+      "quantity": "dist-leftarm-shoulder-ee",
+      "lower-threshold": "dist-leftarm-shoulder-ee-lower",
+      "upper-threshold": "dist-leftarm-shoulder-ee-upper"
+    }
+  ]
+}

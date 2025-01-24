@@ -1,0 +1,152 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/geometry/structural-entities.json",
+    "https://comp-rob2b.github.io/metamodels/geometry/spatial-relations.json",
+    "https://comp-rob2b.github.io/metamodels/geometry/coordinates.json",
+    "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/structural-entities.json",
+    "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/coordinates.json",
+    "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+    "https://comp-rob2b.github.io/metamodels/view.json",
+    "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/motion-specification.json",
+  "@graph": [
+    {
+      "@id": "pose-rightarm-shoulder-ee",
+      "@type": ["Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ"],
+      "of": "frame-rightarm-ee",
+      "with-respect-to": "frame-rightarm-shoulder",
+      "quantity-kind": ["Angle", "Length"],
+      "as-seen-by": "frame-rightarm-shoulder",
+      "unit": ["UNITLESS", "M"]
+    },
+    {
+      "@id": "pose-rightarm-platform-ee",
+      "@type": ["Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ"],
+      "of": "frame-rightarm-ee",
+      "with-respect-to": "frame-platform",
+      "quantity-kind": ["Angle", "Length"],
+      "as-seen-by": "frame-platform",
+      "unit": ["UNITLESS", "M"]
+    },
+    {
+      "@id": "pose-leftarm-shoulder-ee",
+      "@type": ["Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ"],
+      "of": "frame-leftarm-ee",
+      "with-respect-to": "frame-leftarm-shoulder",
+      "quantity-kind": ["Angle", "Length"],
+      "as-seen-by": "frame-leftarm-shoulder",
+      "unit": ["UNITLESS", "M"]
+    },
+    {
+      "@id": "pose-leftarm-platform-ee",
+      "@type": ["Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ"],
+      "of": "frame-leftarm-ee",
+      "with-respect-to": "frame-platform",
+      "quantity-kind": ["Angle", "Length"],
+      "as-seen-by": "frame-platform",
+      "unit": ["UNITLESS", "M"]
+    },
+
+    {
+      "@id": "wrench-rightarm-dist-ee",
+      "@type": ["3D", "Wrench", "WrenchCoordinate", "VectorXYZ"],
+      "quantity-kind": ["Torque", "Force"],
+      "reference-point": "point-rightarm-ee-origin",
+      "as-seen-by": "frame-rightarm-ee",
+      "unit": ["N-M", "N"]
+    },
+    {
+      "@id": "wrench-leftarm-dist-ee",
+      "@type": ["3D", "Wrench", "WrenchCoordinate", "VectorXYZ"],
+      "quantity-kind": ["Torque", "Force"],
+      "reference-point": "point-leftarm-ee-origin",
+      "as-seen-by": "frame-leftarm-ee",
+      "unit": ["N-M", "N"]
+    },
+
+    {
+      "@id": "dir-rightarm-shoulder-to-ee",
+      "@type": ["3D", "Direction", "DirectionCoordinate"],
+      "quantity-kind": "DIMENSIONLESS",
+      "unit": "UNITLESS"
+    },
+    {
+      "@id": "dist-rightarm-shoulder-ee",
+      "@type": [
+        "Quantity",
+        "LinearDistance",
+        "PointToPointDistance",
+        "LinearDistanceCoordinate"
+      ],
+      "between-entities": [
+        "point-rightarm-shoulder-origin",
+        "point-rightarm-ee-origin"
+      ],
+      "quantity-kind": "Distance",
+      "unit": "M"
+    },
+    {
+      "@id": "dir-leftarm-shoulder-to-ee",
+      "@type": ["3D", "Direction", "DirectionCoordinate"],
+      "quantity-kind": "DIMENSIONLESS",
+      "unit": "UNITLESS"
+    },
+    {
+      "@id": "dist-leftarm-shoulder-ee",
+      "@type": [
+        "Quantity",
+        "LinearDistance",
+        "PointToPointDistance",
+        "LinearDistanceCoordinate"
+      ],
+      "between-entities": [
+        "point-leftarm-shoulder-origin",
+        "point-leftarm-ee-origin"
+      ],
+      "quantity-kind": "Distance",
+      "unit": "M"
+    },
+
+    {
+      "@id": "dist-rightarm-shoulder-ee-lower",
+      "@type": ["Quantity", "Distance"],
+      "unit": "M",
+      "value": "0.68"
+    },
+    {
+      "@id": "dist-rightarm-shoulder-ee-upper",
+      "@type": ["Quantity", "Distance"],
+      "unit": "M",
+      "value": "0.72"
+    },
+    {
+      "@id": "dist-leftarm-shoulder-ee-lower",
+      "@type": ["Quantity", "Distance"],
+      "unit": "M",
+      "value": "0.68"
+    },
+    {
+      "@id": "dist-leftarm-shoulder-ee-upper",
+      "@type": ["Quantity", "Distance"],
+      "unit": "M",
+      "value": "0.72"
+    },
+
+    {
+      "@id": "frc-rightarm-dist",
+      "@type": ["Quantity", "Force"],
+      "quantity-kind": "Force",
+      "unit": "N"
+    },
+    {
+      "@id": "frc-leftarm-dist",
+      "@type": ["Quantity", "Force"],
+      "quantity-kind": "Force",
+      "unit": "N"
+    }
+  ]
+}

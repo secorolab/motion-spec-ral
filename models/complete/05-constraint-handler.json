@@ -1,0 +1,77 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+    "https://comp-rob2b.github.io/metamodels/view.json",
+    "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/constraint-handler.json",
+  "@graph": [
+    {
+      "@id": "ctrl-frc-rightarm-ee-anterior",
+      "@type": ["ConstraintController", "StaticFeedforwardController"],
+      "constraint": "cstr-frc-rightarm-ee-anterior"
+    },
+    {
+      "@id": "ctrl-linvel-rightarm-shoulder-ee-vertical",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-linvel-rightarm-shoulder-ee-vertical",
+      "control-signal": "eacc-rightarm-shoulder-ee-lin-z"
+    },
+    {
+      "@id": "ctrl-pos-rightarm-platform-elbow-height",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-pos-rightarm-platform-elbow-height",
+      "control-signal": "frc-rightarm-elbow"
+    },
+    {
+      "@id": "ctrl-angvel-rightarm-shoulder-ee-frontal",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-angvel-rightarm-shoulder-ee-frontal",
+      "control-signal": "eacc-rightarm-shoulder-ee-ang-x"
+    },
+    {
+      "@id": "ctrl-angvel-rightarm-shoulder-ee-longitudinal",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-angvel-rightarm-shoulder-ee-longitudinal",
+      "control-signal": "eacc-rightarm-shoulder-ee-ang-y"
+    },
+    {
+      "@id": "ctrl-ang-rightarm-shoulder-ee-horizontal",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-ang-rightarm-shoulder-ee-horizontal",
+      "control-signal": "eacc-rightarm-shoulder-ee-ang-z"
+    },
+    {
+      "@id": "ctrl-linvel-rightarm-shoulder-ee-horizontal",
+      "@type": ["ConstraintController", "PID"],
+      "constraint": "cstr-linvel-rightarm-shoulder-ee-horizontal",
+      "control-signal": "eacc-rightarm-shoulder-ee-lin-y"
+    },
+    {
+      "@id": "ctrl-dist-rightarm-shoulder-ee",
+      "@type": ["ConstraintController", "PIDWithDecayingI"],
+      "constraint": "cstr-dist-rightarm-shoulder-ee",
+      "control-signal": "frc-rightarm-dist"
+    },
+
+    {
+      "@id": "cstr-demo",
+      "@type": "ConstraintHandler",
+      "motion": "motion-demo",
+      "monitors": [],
+      "controllers": [
+        "ctrl-frc-rightarm-ee-anterior",
+        "ctrl-linvel-rightarm-shoulder-ee-vertical",
+        "ctrl-pos-rightarm-platform-elbow-height",
+        "ctrl-angvel-rightarm-shoulder-ee-frontal",
+        "ctrl-angvel-rightarm-shoulder-ee-longitudinal",
+        "ctrl-ang-rightarm-shoulder-ee-horizontal",
+        "ctrl-linvel-rightarm-shoulder-ee-horizontal",
+        "ctrl-dist-rightarm-shoulder-ee"
+      ]
+    }
+  ]
+}

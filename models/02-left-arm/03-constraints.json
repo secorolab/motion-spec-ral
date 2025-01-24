@@ -1,0 +1,61 @@
+{
+  "@context": [
+    "https://comp-rob2b.github.io/metamodels/task/constraint.json",
+    {
+      "@base": "https://secorolab.github.io/models/demo/"
+    }
+  ],
+  "@id": "https://secorolab.github.io/models/demo/constraints.json",
+  "@graph": [
+    {
+      "@id": "cstr-frc-leftarm-ee-anterior",
+      "@type": ["Constraint", "EqualityConstraint", "ForceConstraint"],
+      "quantity": "frc-leftarm-ee-anterior",
+      "reference-value": "frc-leftarm-ee-anterior-ref"
+    },
+    {
+      "@id": "cstr-linvel-leftarm-shoulder-ee-vertical",
+      "@type": ["Constraint", "EqualityConstraint", "LinearVelocityConstraint"],
+      "quantity": "linvel-leftarm-shoulder-ee-vertical",
+      "reference-value": "linvel-leftarm-shoulder-ee-vertical-ref"
+    },
+    {
+      "@id": "cstr-pos-leftarm-platform-elbow-height",
+      "@type": ["Constraint", "EqualityConstraint", "PositionConstraint"],
+      "quantity": "pos-leftarm-platform-elbow-height",
+      "reference-value": "pos-leftarm-platform-elbow-height-ref"
+    },
+    {
+      "@id": "cstr-angvel-leftarm-shoulder-ee-frontal",
+      "@type": [
+        "Constraint",
+        "EqualityConstraint",
+        "AngularVelocityConstraint"
+      ],
+      "quantity": "angvel-leftarm-shoulder-ee-frontal",
+      "reference-value": "angvel-leftarm-shoulder-ee-frontal-ref"
+    },
+    {
+      "@id": "cstr-angvel-leftarm-shoulder-ee-longitudinal",
+      "@type": [
+        "Constraint",
+        "EqualityConstraint",
+        "AngularVelocityConstraint"
+      ],
+      "quantity": "angvel-leftarm-shoulder-ee-longitudinal",
+      "reference-value": "angvel-leftarm-shoulder-ee-longitudinal-ref"
+    },
+    {
+      "@id": "cstr-ang-leftarm-shoulder-ee-horizontal",
+      "@type": ["Constraint", "EqualityConstraint", "AngleConstraint"],
+      "quantity": "ang-leftarm-shoulder-ee-horizontal",
+      "reference-value": "ang-leftarm-shoulder-ee-horizontal-ref"
+    },
+    {
+      "@id": "cstr-linvel-leftarm-shoulder-ee-horizontal",
+      "@type": ["Constraint", "EqualityConstraint", "LinearVelocityConstraint"],
+      "quantity": "linvel-leftarm-shoulder-ee-horizontal",
+      "reference-value": "linvel-leftarm-shoulder-ee-horizontal-ref"
+    }
+  ]
+}
