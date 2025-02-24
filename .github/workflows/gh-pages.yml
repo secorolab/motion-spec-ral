@@ -1,0 +1,51 @@
+name: Build and deploy documentation
+
+on:
+  push:
+    branches: [devel]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-sphinx python3-sphinx-rtd-theme
+      - name: Checkout ral_demo
+        uses: actions/checkout@v4.2.0
+        with:
+          path: ral_demo
+      - name: Build documentation
+        run: |
+          sphinx-build -M html ${{ github.workspace }}/ral_demo/docs/sphinx/source ${{ github.workspace }}/ral_demo/build
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Upload artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ github.workspace }}/ral_demo/build
+          retention-days: 1
+
+  deploy:
+    name: Deploy documentation
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
