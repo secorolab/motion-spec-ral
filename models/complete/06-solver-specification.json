@@ -1,141 +1,157 @@
 {
-  "@context": [
-    "https://comp-rob2b.github.io/metamodels/task/solver-specification.json",
-    {
-      "@base": "https://secorolab.github.io/models/demo/"
-    }
-  ],
-  "@id": "https://secorolab.github.io/models/demo/solver-specification.json",
-  "@graph": [
-    {
-      "@id": "spec-frc-rightarm-ee-z",
-      "@type": "CartesianForceSpecification",
-      "force": "wrench-rightarm-ee-anterior",
-      "attached-to": "link-rightarm-ee"
-    },
-    {
-      "@id": "acc-cstr-rightarm-shoulder-ee-lin-y",
-      "@type": ["AccelerationConstraint", "AxisAligned"],
-      "subspace": "linear-acceleration",
-      "axis": "y",
-      "acceleration-energy": "eacc-rightarm-shoulder-ee-lin-y"
-    },
-    {
-      "@id": "spec-frc-rightarm-elbow",
-      "@type": "CartesianForceSpecification",
-      "force": "wrench-rightarm-elbow-elbow",
-      "attached-to": "link-rightarm-elbow"
-    },
-    {
-      "@id": "acc-cstr-rightarm-shoulder-ee-ang-x",
-      "@type": ["AccelerationConstraint", "AxisAligned"],
-      "subspace": "angular-acceleration",
-      "axis": "x",
-      "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-x"
-    },
-    {
-      "@id": "acc-cstr-rightarm-shoulder-ee-ang-y",
-      "@type": ["AccelerationConstraint", "AxisAligned"],
-      "subspace": "angular-acceleration",
-      "axis": "y",
-      "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-y"
-    },
-    {
-      "@id": "acc-cstr-rightarm-shoulder-ee-ang-z",
-      "@type": ["AccelerationConstraint", "AxisAligned"],
-      "subspace": "angular-acceleration",
-      "axis": "z",
-      "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-z"
-    },
-    {
-      "@id": "acc-cstr-rightarm-shoulder-ee-lin-z",
-      "@type": ["AccelerationConstraint", "AxisAligned"],
-      "subspace": "linear-acceleration",
-      "axis": "z",
-      "acceleration-energy": "eacc-rightarm-shoulder-ee-lin-z"
-    },
-    {
-      "@id": "spec-frc-rightarm-ee",
-      "@type": "CartesianForceSpecification",
-      "force": "wrench-rightarm-dist-ee",
-      "attached-to": "link-rightarm-ee"
-    },
-    {
-      "@id": "spec-acc-rightarm-ee",
-      "@type": "AccelerationConstraintSpecification",
-      "constraints": [
-        "acc-cstr-rightarm-shoulder-ee-lin-y",
-        "acc-cstr-rightarm-shoulder-ee-ang-x",
-        "acc-cstr-rightarm-shoulder-ee-ang-y",
-        "acc-cstr-rightarm-shoulder-ee-ang-z",
-        "acc-cstr-rightarm-shoulder-ee-lin-z"
-      ],
-      "attached-to": "link-rightarm-ee"
-    },
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/solver-specification.json",
+        {
+            "@base": "https://secorolab.github.io/models/demo/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/demo/",
+    "@graph": [
+        {
+            "@id": "spec-frc-rightarm-ee-z",
+            "@type": "CartesianForceSpecification",
+            "force": "wrench-rightarm-ee-anteroposterior",
+            "attached-to": "link-rightarm-ee"
+        },
+        {
+            "@id": "acc-cstr-rightarm-shoulder-ee-lin-y",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "linear-acceleration",
+            "axis": "y",
+            "acceleration-energy": "eacc-rightarm-shoulder-ee-lin-y"
+        },
+        {
+            "@id": "spec-frc-rightarm-elbow",
+            "@type": "CartesianForceSpecification",
+            "force": "wrench-rightarm-elbow-elbow",
+            "attached-to": "link-rightarm-elbow"
+        },
+        {
+            "@id": "acc-cstr-rightarm-shoulder-ee-ang-x",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "x",
+            "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-x"
+        },
+        {
+            "@id": "acc-cstr-rightarm-shoulder-ee-ang-y",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "y",
+            "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-y"
+        },
+        {
+            "@id": "acc-cstr-rightarm-shoulder-ee-ang-z",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "z",
+            "acceleration-energy": "eacc-rightarm-shoulder-ee-ang-z"
+        },
+        {
+            "@id": "acc-cstr-rightarm-shoulder-ee-lin-z",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "linear-acceleration",
+            "axis": "z",
+            "acceleration-energy": "eacc-rightarm-shoulder-ee-lin-z"
+        },
+        {
+            "@id": "spec-frc-rightarm-ee",
+            "@type": "CartesianForceSpecification",
+            "force": "wrench-rightarm-dist-ee",
+            "attached-to": "link-rightarm-ee"
+        },
+        {
+            "@id": "spec-acc-rightarm-ee",
+            "@type": "AccelerationConstraintSpecification",
+            "constraints": [
+                "acc-cstr-rightarm-shoulder-ee-lin-y",
+                "acc-cstr-rightarm-shoulder-ee-ang-x",
+                "acc-cstr-rightarm-shoulder-ee-ang-y",
+                "acc-cstr-rightarm-shoulder-ee-ang-z",
+                "acc-cstr-rightarm-shoulder-ee-lin-z"
+            ],
+            "attached-to": "link-rightarm-ee"
+        },
 
-    {
-      "@id": "prio-sc2",
-      "@type": "PrioritizationLevel",
-      "motion-drivers": [
-        "spec-acc-rightarm-ee",
-        "spec-frc-rightarm-ee-z",
-        "spec-frc-rightarm-elbow",
-        "spec-frc-rightarm-ee"
-      ]
-    },
-    {
-      "@id": "drv-sc2",
-      "@type": "MotionDrivers",
-      "acceleration-constraint": ["spec-acc-rightarm-ee"],
-      "cartesian-force": [
-        "spec-frc-rightarm-ee-z",
-        "spec-frc-rightarm-elbow",
-        "spec-frc-rightarm-ee"
-      ],
-      "joint-force": [],
-      "prioritization-hierarchy": ["prio-sc2"]
-    },
-    {
-      "@id": "slv-sc2",
-      "@type": "SolverWithInputAndOutput",
-      "motion-drivers": ["drv-sc2"],
-      "output": [
-        "pose-rightarm-elbow-ee",
-        "pose-rightarm-shoulder-ee",
-        "twist-rightarm-shoulder-ee"
-      ],
-      "gravity": "uniform-gravitational-field",
-      "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
-    },
 
-    {
-      "@id": "prio-sc1",
-      "@type": "PrioritizationLevel",
-      "motion-drivers": [
-        "spec-acc-rightarm-ee",
-        "spec-frc-rightarm-ee-z",
-        "spec-frc-rightarm-elbow"
-      ]
-    },
-    {
-      "@id": "drv-sc1",
-      "@type": "MotionDrivers",
-      "acceleration-constraint": ["spec-acc-rightarm-ee"],
-      "cartesian-force": ["spec-frc-rightarm-ee-z", "spec-frc-rightarm-elbow"],
-      "joint-force": [],
-      "prioritization-hierarchy": ["prio-sc1"]
-    },
-    {
-      "@id": "slv-sc1",
-      "@type": "SolverWithInputAndOutput",
-      "motion-drivers": ["drv-sc1"],
-      "output": [
-        "pose-rightarm-elbow-ee",
-        "pose-rightarm-shoulder-ee",
-        "twist-rightarm-shoulder-ee"
-      ],
-      "gravity": "earth-uniform-gravitational-field",
-      "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
-    }
-  ]
+        {
+            "@id": "prio-sc1-rightarm",
+            "@type": "PrioritizationLevel",
+            "motion-drivers": [
+                "spec-acc-rightarm-ee",
+                "spec-frc-rightarm-ee-z",
+                "spec-frc-rightarm-elbow"
+            ]
+        },
+        {
+            "@id": "drv-sc1-rightarm",
+            "@type": "MotionDrivers",
+            "acceleration-constraint": [
+                "spec-acc-rightarm-ee"
+            ],
+            "cartesian-force": [
+                "spec-frc-rightarm-ee-z",
+                "spec-frc-rightarm-elbow"
+            ],
+            "joint-force": [],
+            "prioritization-hierarchy": [
+                "prio-sc1-rightarm"
+            ]
+        },
+        {
+            "@id": "slv-sc1-rightarm",
+            "@type": "SolverWithInputAndOutput",
+            "motion-drivers": [ "drv-sc1-rightarm" ],
+            "output": [
+                "pose-rightarm-elbow-ee",
+                "pose-rightarm-shoulder-ee",
+                "twist-rightarm-shoulder-ee"
+            ],
+            "kinematic-chain": "chain-rightarm",
+            "root": "frame-rightarm-shoulder",
+            "gravity": "earth-uniform-gravitational-field",
+            "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
+        },
+
+
+
+        {
+            "@id": "prio-sc2-rightarm",
+            "@type": "PrioritizationLevel",
+            "motion-drivers": [
+                "spec-acc-rightarm-ee",
+                "spec-frc-rightarm-ee-z",
+                "spec-frc-rightarm-elbow",
+                "spec-frc-rightarm-ee"
+            ]
+        },
+        {
+            "@id": "drv-sc2-rightarm",
+            "@type": "MotionDrivers",
+            "acceleration-constraint": [
+                "spec-acc-rightarm-ee"
+            ],
+            "cartesian-force": [
+                "spec-frc-rightarm-ee-z",
+                "spec-frc-rightarm-elbow",
+                "spec-frc-rightarm-ee"
+            ],
+            "joint-force": [],
+            "prioritization-hierarchy": [
+                "prio-sc2-rightarm"
+            ]
+        },
+        {
+            "@id": "slv-sc2-rightarm",
+            "@type": "SolverWithInputAndOutput",
+            "motion-drivers": [ "drv-sc2-rightarm" ],
+            "output": [
+                "pose-rightarm-elbow-ee",
+                "pose-rightarm-shoulder-ee",
+                "twist-rightarm-shoulder-ee"
+            ],
+            "gravity": "uniform-gravitational-field",
+            "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
+        }
+    ]
 }

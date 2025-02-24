@@ -1,27 +1,27 @@
 {
-  "@context": [
-    "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
-    {
-      "@base": "https://secorolab.github.io/models/demo/"
-    }
-  ],
-  "@id": "https://secorolab.github.io/models/demo/motion-specification.json",
-  "@graph": [
-    {
-      "@id": "motion-demo",
-      "@type": "GuardedMotion",
-      "when": [],
-      "while": [
-        "cstr-frc-rightarm-ee-anterior",
-        "cstr-linvel-rightarm-shoulder-ee-vertical",
-        "cstr-pos-rightarm-platform-elbow-height",
-        "cstr-angvel-rightarm-shoulder-ee-frontal",
-        "cstr-angvel-rightarm-shoulder-ee-longitudinal",
-        "cstr-ang-rightarm-shoulder-ee-horizontal",
-        "cstr-linvel-rightarm-shoulder-ee-horizontal",
-        "cstr-dist-rightarm-shoulder-ee"
-      ],
-      "until": []
-    }
-  ]
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
+        {
+            "@base": "https://secorolab.github.io/models/demo/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/demo/",
+    "@graph": [
+        {
+            "@id": "motion-rightarm",
+            "@type": "GuardedMotion",
+            "when": [],
+            "while": [
+                "cstr-frc-rightarm-ee-anteroposterior",
+                "cstr-linvel-rightarm-shoulder-ee-vertical",
+                "cstr-pos-rightarm-platform-elbow-height",
+                "cstr-angvel-rightarm-shoulder-ee-anteroposterior",
+                "cstr-angvel-rightarm-shoulder-ee-lateral",
+                "cstr-ang-rightarm-shoulder-ee-vertical",
+                "cstr-linvel-rightarm-shoulder-ee-lateral",
+                "cstr-dist-rightarm-shoulder-ee"
+            ],
+            "until": []
+        }
+    ]
 }

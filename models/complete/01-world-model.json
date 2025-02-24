@@ -5,21 +5,21 @@
         "https://comp-rob2b.github.io/metamodels/geometry/coordinates.json",
         "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/structural-entities.json",
         "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/coordinates.json",
+        "https://comp-rob2b.github.io/metamodels/qudt.json",
         "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
-        "https://comp-rob2b.github.io/metamodels/view.json",
         "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
         {
             "@base": "https://secorolab.github.io/models/demo/"
         }
     ],
-    "@id": "https://secorolab.github.io/models/demo/motion-specification.json",
+    "@id": "https://secorolab.github.io/models/demo/",
     "@graph": [
         {
             "@id": "pose-rightarm-shoulder-elbow",
             "@type": [ "Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ" ],
             "of": "frame-rightarm-elbow",
             "with-respect-to": "frame-rightarm-shoulder",
-            "quantity-kind": [ "Angle", "Length" ],
+            "quantity-kind": [ "PlaneAngle", "Length" ],
             "as-seen-by": "frame-rightarm-shoulder",
             "unit": [ "UNITLESS", "M" ]
         },
@@ -28,7 +28,7 @@
             "@type": [ "Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ" ],
             "of": "frame-rightarm-elbow",
             "with-respect-to": "frame-platform",
-            "quantity-kind": [ "Angle", "Length" ],
+            "quantity-kind": [ "PlaneAngle", "Length" ],
             "as-seen-by": "frame-platform",
             "unit": [ "UNITLESS", "M" ]
         },
@@ -37,7 +37,7 @@
             "@type": [ "Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ" ],
             "of": "frame-rightarm-ee",
             "with-respect-to": "frame-rightarm-shoulder",
-            "quantity-kind": [ "Angle", "Length" ],
+            "quantity-kind": [ "PlaneAngle", "Length" ],
             "as-seen-by": "frame-rightarm-shoulder",
             "unit": [ "UNITLESS", "M" ]
         },
@@ -46,9 +46,20 @@
             "@type": [ "Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ" ],
             "of": "frame-rightarm-ee",
             "with-respect-to": "frame-platform",
-            "quantity-kind": [ "Angle", "Length" ],
+            "quantity-kind": [ "PlaneAngle", "Length" ],
             "as-seen-by": "frame-platform",
             "unit": [ "UNITLESS", "M" ]
+        },
+
+        {
+            "@id": "twist-rightarm-shoulder-ee-platform",
+            "@type": [ "VelocityTwist", "VelocityTwistCoordinate", "VectorXYZ" ],
+            "of": "link-rightarm-ee",
+            "with-respect-to": "link-rightarm-shoulder",
+            "quantity-kind": [ "AngularVelocity", "LinearVelocity" ],
+            "reference-point": "point-rightarm-ee-origin",
+            "as-seen-by": "frame-platform",
+            "unit": [ "RAD-PER-SEC", "M-PER-SEC" ]
         },
         {
             "@id": "twist-rightarm-shoulder-ee-shoulder",
@@ -60,68 +71,32 @@
             "as-seen-by": "frame-rightarm-shoulder",
             "unit": [ "RAD-PER-SEC", "M-PER-SEC" ]
         },
-        {
-            "@id": "twist-rightarm-shoulder-ee-platform",
-            "@type": [ "VelocityTwist", "VelocityTwistCoordinate", "VectorXYZ" ],
-            "of": "link-rightarm-ee",
-            "with-respect-to": "link-rightarm-shoulder",
-            "quantity-kind": [ "AngularVelocity", "LinearVelocity" ],
-            "reference-point": "point-rightarm-ee-origin",
-            "as-seen-by": "frame-platform",
-            "unit": [ "RAD-PER-SEC", "M-PER-SEC" ]
-        },
 
 
 
         {
-            "@id": "wrench-rightarm-ee-anterior",
-            "@type": [ "3D", "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "@id": "wrench-rightarm-ee-anteroposterior",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
             "quantity-kind": [ "Torque", "Force" ],
             "reference-point": "point-rightarm-ee-origin",
             "as-seen-by": "frame-rightarm-ee",
             "unit": [ "N-M", "N" ]
         },
         {
-            "@id": "wrench-rightarm-elbow-platform",
-            "@type": [ "3D", "Wrench", "WrenchCoordinate", "VectorXYZ" ],
-            "quantity-kind": [ "Torque", "Force" ],
-            "reference-point": "point-rightarm-elbow-origin",
-            "as-seen-by": "frame-platform",
-            "unit": [ "N-M", "N" ]
-        },
-        {
-            "@id": "wrench-rightarm-elbow-elbow",
-            "@type": [ "3D", "Wrench", "WrenchCoordinate", "VectorXYZ" ],
-            "quantity-kind": [ "Torque", "Force" ],
-            "reference-point": "point-rightarm-elbow-origin",
-            "as-seen-by": "frame-rightarm-elbow",
-            "unit": [ "N-M", "N" ]
-        },
-        {
-            "@id": "wrench-rightarm-dist-platform",
-            "@type": [ "3D", "Wrench", "WrenchCoordinate", "VectorXYZ" ],
-            "quantity-kind": [ "Torque", "Force" ],
-            "reference-point": "point-rightarm-ee-origin",
-            "as-seen-by": "frame-platform",
-            "unit": [ "N-M", "N" ]
-        },
-        {
-            "@id": "wrench-rightarm-dist-ee",
-            "@type": [ "3D", "Wrench", "WrenchCoordinate", "VectorXYZ" ],
-            "quantity-kind": [ "Torque", "Force" ],
-            "reference-point": "point-rightarm-ee-origin",
-            "as-seen-by": "frame-rightarm-ee",
-            "unit": [ "N-M", "N" ]
-        },
-
-
-
-        {
-            "@id": "frc-rightarm-ee-anterior",
+            "@id": "frc-rightarm-ee-anteroposterior",
             "@type": [ "Quantity", "Force" ],
             "quantity-kind": "Force",
             "unit": "N"
         },
+        {
+            "@id": "frc-rightarm-ee-anteroposterior-ref",
+            "@type": [ "Quantity", "Force" ],
+            "unit": "N",
+            "value": "20.0"
+        },
+
+
+
         {
             "@id": "linvel-rightarm-shoulder-ee-vertical",
             "@type": [ "Quantity", "LinearVelocity" ],
@@ -129,42 +104,186 @@
             "unit": "M-PER-SEC"
         },
         {
+            "@id": "linvel-rightarm-shoulder-ee-vertical-ref",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC",
+            "value": "0.0"
+        },
+        {
+            "@id": "linvel-rightarm-shoulder-ee-vertical-err",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "eacc-rightarm-shoulder-ee-lin-z",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+
+
+
+        {
             "@id": "pos-rightarm-platform-elbow-height",
             "@type": [ "Quantity", "Position" ],
             "quantity-kind": "Position",
             "unit": "M"
         },
         {
-            "@id": "angvel-rightarm-shoulder-ee-frontal",
+            "@id": "pos-rightarm-platform-elbow-height-ref",
+            "@type": [ "Quantity", "Position" ],
+            "unit": "M",
+            "value": "0.75"
+        },
+        {
+            "@id": "pos-rightarm-platform-elbow-height-err",
+            "@type": [ "Quantity", "Position" ],
+            "unit": "M"
+        },
+        {
+            "@id": "frc-rightarm-elbow",
+            "@type": [ "Quantity", "Force" ],
+            "quantity-kind": "Force",
+            "unit": "N"
+        },
+        {
+            "@id": "wrench-rightarm-elbow-platform",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "quantity-kind": [ "Torque", "Force" ],
+            "reference-point": "point-rightarm-elbow-origin",
+            "as-seen-by": "frame-platform",
+            "unit": [ "N-M", "N" ]
+        },
+        {
+            "@id": "wrench-rightarm-elbow-elbow",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "quantity-kind": [ "Torque", "Force" ],
+            "reference-point": "point-rightarm-elbow-origin",
+            "as-seen-by": "frame-rightarm-elbow",
+            "unit": [ "N-M", "N" ]
+        },
+
+
+
+        {
+            "@id": "angvel-rightarm-shoulder-ee-anteroposterior",
             "@type": [ "Quantity", "AngularVelocity" ],
             "quantity-kind": "AngularVelocity",
             "unit": "RAD-PER-SEC"
         },
         {
-            "@id": "angvel-rightarm-shoulder-ee-longitudinal",
+            "@id": "angvel-rightarm-shoulder-ee-anteroposterior-ref",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC",
+            "value": "0.0"
+        },
+        {
+            "@id": "angvel-rightarm-shoulder-ee-anteroposterior-err",
             "@type": [ "Quantity", "AngularVelocity" ],
             "quantity-kind": "AngularVelocity",
             "unit": "RAD-PER-SEC"
         },
         {
-            "@id": "ang-rightarm-shoulder-ee-horizontal",
-            "@type": [ "Quantity", "Angle" ],
-            "quantity-kind": "Angle",
+            "@id": "eacc-rightarm-shoulder-ee-ang-x",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+
+
+
+        {
+            "@id": "angvel-rightarm-shoulder-ee-lateral",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-rightarm-shoulder-ee-lateral-ref",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC",
+            "value": "0.0"
+        },
+        {
+            "@id": "angvel-rightarm-shoulder-ee-lateral-err",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "eacc-rightarm-shoulder-ee-ang-y",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+
+
+
+        {
+            "@id": "ang-rightarm-shoulder-ee-vertical",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
             "unit": "RAD"
         },
         {
-            "@id": "linvel-rightarm-shoulder-ee-horizontal",
+            "@id": "ang-rightarm-shoulder-ee-vertical-ref",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD",
+            "value": "0.0"
+        },
+        {
+            "@id": "ang-rightarm-shoulder-ee-vertical-err",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD"
+        },
+        {
+            "@id": "eacc-rightarm-shoulder-ee-ang-z",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+
+
+
+        {
+            "@id": "linvel-rightarm-shoulder-ee-lateral",
             "@type": [ "Quantity", "LinearVelocity" ],
             "quantity-kind": "LinearVelocity",
             "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "linvel-rightarm-shoulder-ee-lateral-ref",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC",
+            "value": "0.0"
+        },
+        {
+            "@id": "linvel-rightarm-shoulder-ee-lateral-err",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "eacc-rightarm-shoulder-ee-lin-y",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
         },
 
 
 
         {
             "@id": "dir-rightarm-shoulder-to-ee",
-            "@type": [ "3D", "Direction", "DirectionCoordinate" ],
-            "quantity-kind": "DIMENSIONLESS",
+            "@type": [ "Quantity", "Direction", "DirectionCoordinate", "VectorXYZ" ],
+            "quantity-kind": "Dimensionless",
+            "as-seen-by": "frame-rightarm-shoulder",
             "unit": "UNITLESS"
         },
         {
@@ -176,56 +295,6 @@
             ],
             "quantity-kind": "Distance",
             "unit": "M"
-        },
-
-
-
-        {
-            "@id": "frc-rightarm-ee-anterior-ref",
-            "@type": [ "Quantity", "Force" ],
-            "unit": "N",
-            "value": "20.0"
-        },
-        {
-            "@id": "linvel-rightarm-shoulder-ee-vertical-ref",
-            "@type": [ "Quantity", "LinearVelocity" ],
-            "quantity-kind": "LinearVelocity",
-            "unit": "M-PER-SEC",
-            "value": "0.0"
-        },
-        {
-            "@id": "pos-rightarm-platform-elbow-height-ref",
-            "@type": [ "Quantity", "Position" ],
-            "unit": "M",
-            "value": "0.75"
-        },
-        {
-            "@id": "angvel-rightarm-shoulder-ee-frontal-ref",
-            "@type": [ "Quantity", "AngularVelocity" ],
-            "quantity-kind": "AngularVelocity",
-            "unit": "RAD-PER-SEC",
-            "value": "0.0"
-        },
-        {
-            "@id": "angvel-rightarm-shoulder-ee-longitudinal-ref",
-            "@type": [ "Quantity", "AngularVelocity" ],
-            "quantity-kind": "AngularVelocity",
-            "unit": "RAD-PER-SEC",
-            "value": "0.0"
-        },
-        {
-            "@id": "ang-rightarm-shoulder-ee-horizontal-ref",
-            "@type": [ "Quantity", "Angle" ],
-            "quantity-kind": "Angle",
-            "unit": "RAD",
-            "value": "0.0"
-        },
-        {
-            "@id": "linvel-rightarm-shoulder-ee-horizontal-ref",
-            "@type": [ "Quantity", "LinearVelocity" ],
-            "quantity-kind": "LinearVelocity",
-            "unit": "M-PER-SEC",
-            "value": "0.0"
         },
         {
             "@id": "dist-rightarm-shoulder-ee-lower",
@@ -239,56 +308,32 @@
             "unit": "M",
             "value": "0.72"
         },
-
-
-
         {
-            "@id": "frc-rightarm-ee-anterior",
-            "@type": [ "Quantity", "Force" ],
-            "quantity-kind": "Force",
-            "unit": "N"
-        },
-        {
-            "@id": "eacc-rightarm-shoulder-ee-lin-y",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
-        },
-        {
-            "@id": "frc-rightarm-elbow",
-            "@type": [ "Quantity", "Force" ],
-            "quantity-kind": "Force",
-            "unit": "N"
-        },
-        {
-            "@id": "eacc-rightarm-shoulder-ee-ang-x",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
-        },
-        {
-            "@id": "eacc-rightarm-shoulder-ee-ang-y",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
-        },
-        {
-            "@id": "eacc-rightarm-shoulder-ee-ang-z",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
-        },
-        {
-            "@id": "eacc-rightarm-shoulder-ee-lin-z",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
+            "@id": "dist-rightarm-shoulder-ee-err",
+            "@type": [ "Quantity", "Distance" ],
+            "unit": "M"
         },
         {
             "@id": "frc-rightarm-dist",
             "@type": [ "Quantity", "Force" ],
             "quantity-kind": "Force",
             "unit": "N"
+        },
+        {
+            "@id": "wrench-rightarm-dist-platform",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "quantity-kind": [ "Torque", "Force" ],
+            "reference-point": "point-rightarm-ee-origin",
+            "as-seen-by": "frame-platform",
+            "unit": [ "N-M", "N" ]
+        },
+        {
+            "@id": "wrench-rightarm-dist-ee",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "quantity-kind": [ "Torque", "Force" ],
+            "reference-point": "point-rightarm-ee-origin",
+            "as-seen-by": "frame-rightarm-ee",
+            "unit": [ "N-M", "N" ]
         }
     ]
 }
