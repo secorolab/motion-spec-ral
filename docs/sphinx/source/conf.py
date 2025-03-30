@@ -4,7 +4,7 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = "ral_demo"
+project = "motion-spec-ral"
 copyright = "2025, Sven Schneider, Vamsi Kalagaturu"
 author = "Sven Schneider, Vamsi Kalagaturu"
 

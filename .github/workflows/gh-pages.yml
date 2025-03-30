@@ -23,19 +23,19 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y python3-sphinx python3-sphinx-rtd-theme
-      - name: Checkout ral_demo
+      - name: Checkout motion-spec-ral
         uses: actions/checkout@v4.2.0
         with:
-          path: ral_demo
+          path: motion-spec-ral
       - name: Build documentation
         run: |
-          sphinx-build -M html ${{ github.workspace }}/ral_demo/docs/sphinx/source ${{ github.workspace }}/ral_demo/build
+          sphinx-build -M html ${{ github.workspace }}/motion-spec-ral/docs/sphinx/source ${{ github.workspace }}/motion-spec-ral/build
       - name: Setup Pages
         uses: actions/configure-pages@v5
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ${{ github.workspace }}/ral_demo/build
+          path: ${{ github.workspace }}/motion-spec-ral/build
           retention-days: 1
 
   deploy:
