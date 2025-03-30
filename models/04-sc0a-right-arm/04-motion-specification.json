@@ -1,4 +1,5 @@
 {
+    "license": "https://github.com/aws/mit-0",
     "@context": [
         "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
         {
@@ -17,9 +18,7 @@
                 "cstr-pos-rightarm-platform-elbow-height",
                 "cstr-angvel-rightarm-shoulder-ee-anteroposterior",
                 "cstr-angvel-rightarm-shoulder-ee-lateral",
-                "cstr-ang-rightarm-shoulder-ee-vertical",
-                "cstr-linvel-rightarm-shoulder-ee-lateral",
-                "cstr-dist-rightarm-shoulder-ee"
+                "cstr-linvel-rightarm-world-ee-lateral"
             ],
             "until": []
         }

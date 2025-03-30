@@ -1,0 +1,34 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+        "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
+        {
+            "@base": "https://secorolab.github.io/models/demo/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/demo/",
+    "@graph": [
+        {
+            "@id": "cstr-hdl-rightarm",
+            "@type": "ConstraintHandler",
+            "motion": "motion-rightarm",
+            "evaluators": [
+                "eval-frc-rightarm-ee-anteroposterior",
+                "eval-linvel-rightarm-shoulder-ee-vertical",
+                "eval-pos-rightarm-platform-elbow-height",
+                "eval-angvel-rightarm-shoulder-ee-anteroposterior",
+                "eval-angvel-rightarm-shoulder-ee-lateral",
+                "eval-linvel-rightarm-world-ee-lateral"
+            ],
+            "monitors": [],
+            "controllers": [
+                "ctrl-linvel-rightarm-shoulder-ee-vertical",
+                "ctrl-pos-rightarm-platform-elbow-height",
+                "ctrl-angvel-rightarm-shoulder-ee-anteroposterior",
+                "ctrl-angvel-rightarm-shoulder-ee-lateral",
+                "ctrl-linvel-rightarm-world-ee-lateral"
+            ]
+        }
+    ]
+}

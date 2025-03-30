@@ -1,7 +1,7 @@
 {
+    "license": "https://github.com/aws/mit-0",
     "@context": [
-        "https://comp-rob2b.github.io/metamodels/task/view.json",
-        "https://comp-rob2b.github.io/metamodels/geometry/spatial-operators.json",
+        "https://comp-rob2b.github.io/metamodels/task/map.json",
         {
             "@base": "https://secorolab.github.io/models/demo/"
         }
@@ -11,7 +11,7 @@
         {
             "@id": "view-frc-rightarm-ee-anteroposterior",
             "@type": [ "View", "WrenchCoordinateView" ],
-            "superobject": "wrench-rightarm-ee-anteroposterior",
+            "superobject": "wrench-rightarm-ee-anteroposterior-ee",
             "subobject": "frc-rightarm-ee-anteroposterior",
             "subspace": "force",
             "axis": "x"
@@ -38,7 +38,7 @@
         {
             "@id": "view-frc-rightarm-elbow",
             "@type": [ "View", "WrenchCoordinateView" ],
-            "superobject": "wrench-rightarm-elbow-platform",
+            "superobject": "wrench-rightarm-elbow",
             "subobject": "frc-rightarm-elbow",
             "subspace": "force",
             "axis": "z"
@@ -63,41 +63,12 @@
             "axis": "y"
         },
         {
-            "@id": "pose-to-ang-rightarm-shoulder-ee-vertical",
-            "@type": "PoseToAngleAroundAxis",
-            "pose": "pose-rightarm-platform-ee",
-            "angle": "ang-rightarm-shoulder-ee-vertical",
-            "axis": "z"
-        },
-        {
-            "@id": "view-linvel-rightarm-shoulder-ee-lateral",
+            "@id": "view-linvel-rightarm-world-ee-lateral",
             "@type": [ "View", "VelocityTwistCoordinateView" ],
-            "superobject": "twist-rightarm-shoulder-ee-platform",
-            "subobject": "linvel-rightarm-shoulder-ee-lateral",
+            "superobject": "twist-world-platform-rightarm-ee",
+            "subobject": "linvel-rightarm-world-ee-lateral",
             "subspace": "linear-velocity",
             "axis": "y"
-        },
-
-
-
-        {
-            "@id": "pose-to-dist-rightarm",
-            "@type": "PoseToLinearDistance",
-            "pose": "pose-rightarm-shoulder-ee",
-            "distance": "dist-rightarm-shoulder-ee"
-        },
-        {
-            "@id": "pose-to-dir-rightarm",
-            "@type": "PoseToDirection",
-            "pose": "pose-rightarm-shoulder-ee",
-            "direction": "dir-rightarm-shoulder-to-ee"
-        },
-        {
-            "@id": "compute-wrench-rightarm-dist",
-            "@type": "PureForceFromDirectionAndMagnitude",
-            "magnitude": "frc-rightarm-dist",
-            "direction": "dir-rightarm-shoulder-to-ee",
-            "wrench": "wrench-rightarm-dist-platform"
         }
     ]
 }

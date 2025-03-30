@@ -1,70 +1,98 @@
 {
-  "@context": [
-    "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
-    "https://comp-rob2b.github.io/metamodels/view.json",
-    "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
-    {
-      "@base": "https://secorolab.github.io/models/demo/"
-    }
-  ],
-  "@id": "https://secorolab.github.io/models/demo/constraint-handler.json",
-  "@graph": [
-    {
-      "@id": "ctrl-frc-leftarm-ee-anterior",
-      "@type": ["ConstraintController", "StaticFeedforwardController"],
-      "constraint": "cstr-frc-leftarm-ee-anterior"
-    },
-    {
-      "@id": "ctrl-linvel-leftarm-shoulder-ee-vertical",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-linvel-leftarm-shoulder-ee-vertical",
-      "control-signal": "eacc-leftarm-shoulder-ee-lin-z"
-    },
-    {
-      "@id": "ctrl-pos-leftarm-platform-elbow-height",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-pos-leftarm-platform-elbow-height",
-      "control-signal": "frc-leftarm-elbow"
-    },
-    {
-      "@id": "ctrl-angvel-leftarm-shoulder-ee-frontal",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-angvel-leftarm-shoulder-ee-frontal",
-      "control-signal": "eacc-leftarm-shoulder-ee-ang-x"
-    },
-    {
-      "@id": "ctrl-angvel-leftarm-shoulder-ee-longitudinal",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-angvel-leftarm-shoulder-ee-longitudinal",
-      "control-signal": "eacc-leftarm-shoulder-ee-ang-y"
-    },
-    {
-      "@id": "ctrl-ang-leftarm-shoulder-ee-horizontal",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-ang-leftarm-shoulder-ee-horizontal",
-      "control-signal": "eacc-leftarm-shoulder-ee-ang-z"
-    },
-    {
-      "@id": "ctrl-linvel-leftarm-shoulder-ee-horizontal",
-      "@type": ["ConstraintController", "PID"],
-      "constraint": "cstr-linvel-leftarm-shoulder-ee-horizontal",
-      "control-signal": "eacc-leftarm-shoulder-ee-lin-y"
-    },
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+        "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
+        {
+            "@base": "https://secorolab.github.io/models/demo/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/demo/",
+    "@graph": [
+        {
+            "@id": "eval-frc-leftarm-ee-anteroposterior",
+            "@type": [ "ConstraintEvaluator", "AssignmentEvaluator" ],
+            "constraint": "cstr-frc-leftarm-ee-anteroposterior"
+        },
 
-    {
-      "@id": "cstr-demo",
-      "@type": "ConstraintHandler",
-      "motion": "motion-demo",
-      "monitors": [],
-      "controllers": [
-        "ctrl-frc-leftarm-ee-anterior",
-        "ctrl-linvel-leftarm-shoulder-ee-vertical",
-        "ctrl-pos-leftarm-platform-elbow-height",
-        "ctrl-angvel-leftarm-shoulder-ee-frontal",
-        "ctrl-angvel-leftarm-shoulder-ee-longitudinal",
-        "ctrl-ang-leftarm-shoulder-ee-horizontal",
-        "ctrl-linvel-leftarm-shoulder-ee-horizontal"
-      ]
-    }
-  ]
+        {
+            "@id": "eval-linvel-leftarm-shoulder-ee-vertical",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-linvel-leftarm-shoulder-ee-vertical",
+            "error": "linvel-leftarm-shoulder-ee-vertical-err"
+        },
+        {
+            "@id": "ctrl-linvel-leftarm-shoulder-ee-vertical",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "linvel-leftarm-shoulder-ee-vertical-err",
+            "control-signal": "eacc-leftarm-shoulder-ee-lin-z",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+
+        {
+            "@id": "eval-pos-leftarm-platform-elbow-height",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-pos-leftarm-platform-elbow-height",
+            "error": "pos-leftarm-platform-elbow-height-err"
+        },
+        {
+            "@id": "ctrl-pos-leftarm-platform-elbow-height",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "pos-leftarm-platform-elbow-height-err",
+            "control-signal": "frc-leftarm-elbow",
+            "proportional-gain": "100.0",
+            "integral-gain": "0.0",
+            "derivative-gain": "0.0"
+        },
+
+        {
+            "@id": "eval-angvel-leftarm-shoulder-ee-anteroposterior",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-leftarm-shoulder-ee-anteroposterior",
+            "error": "angvel-leftarm-shoulder-ee-anteroposterior-err"
+        },
+        {
+            "@id": "ctrl-angvel-leftarm-shoulder-ee-anteroposterior",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-leftarm-shoulder-ee-anteroposterior-err",
+            "control-signal": "eacc-leftarm-shoulder-ee-ang-x",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+
+        {
+            "@id": "eval-angvel-leftarm-shoulder-ee-lateral",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-leftarm-shoulder-ee-lateral",
+            "error": "angvel-leftarm-shoulder-ee-lateral-err"
+        },
+        {
+            "@id": "ctrl-angvel-leftarm-shoulder-ee-lateral",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-leftarm-shoulder-ee-lateral-err",
+            "control-signal": "eacc-leftarm-shoulder-ee-ang-y",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+
+        {
+            "@id": "eval-linvel-leftarm-world-ee-lateral",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-linvel-leftarm-world-ee-lateral",
+            "error": "linvel-leftarm-world-ee-lateral-err"
+        },
+        {
+            "@id": "ctrl-linvel-leftarm-world-ee-lateral",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "linvel-leftarm-world-ee-lateral-err",
+            "control-signal": "eacc-leftarm-world-ee-lin-y",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        }
+    ]
 }
