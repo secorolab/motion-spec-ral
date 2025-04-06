@@ -6,7 +6,7 @@ $(GEN):
 
 gen-prepare: | $(GEN)
 	@cp code-generator/CMakeLists.txt $(GEN)/CMakeLists.txt
-	@cp thirdparty/orocos-kdl/chainhdsolver_vereshchagin_fext.cpp $(GEN)/chainhdsolver_vereshchagin_fext.cpp
+	@cp thirdparty/orocos-kdl/chainhdsolver_vereshchagin_fext.hpp $(GEN)/chainhdsolver_vereshchagin_fext.hpp
 	@cp thirdparty/orocos-kdl/chainhdsolver_vereshchagin_fext.cpp $(GEN)/chainhdsolver_vereshchagin_fext.cpp
 	@cp thirdparty/kinova/GEN3_URDF_V12.urdf $(GEN)/GEN3_URDF_V12.urdf
 
