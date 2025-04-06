@@ -165,7 +165,7 @@ int main()
         <slv_arm:{s | <solver-to-robif2b(s)>}; separator="\n">
 
         <slv_base_frc:{s | <kdl-to-hddc2b-f-platform(s)>}; separator="\n">
-        <slv_base_frc:{s | <hddc2b-call-force-solver-sc1(s)>}; separator="\n">
+        <slv_base_frc:{s | <hddc2b-call-force-solver(s)>}; separator="\n">
 
         <robif2b-update-kelo-driver()>
         <slv_arm:{s | <robif2b-update-kinova(s.id)>}; separator="\n">

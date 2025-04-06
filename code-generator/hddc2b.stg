@@ -174,7 +174,7 @@ hddc2b_pltf_frc_comp_mat(NUM_DRIVES, drive_attachment, kelo_msr.pvt_pos, g);
 >>
 
 
-hddc2b-call-force-solver-sc1(solver) ::= <<
+hddc2b-call-force-solver-hddc2b_example_frc_sc1(solver) ::= <<
 hddc2b_pltf_drv_algn_dst(NUM_DRIVES, drive_attachment, w_align, kelo_msr.pvt_pos, f_platform, &f_drive_ref[1], 2);
 hddc2b_pltf_frc_pltf_to_drv(NUM_DRIVES, EPS, g, w_platform, f_platform, w_drive, f_drive_ref, f_prim, f_scnd);
 hddc2b_rescale(f_scnd);
@@ -184,10 +184,14 @@ hddc2b_whl_frc_gnd_to_hub(NUM_DRIVES, wheel_diameter, f_wheel, kelo_cmd.trq);
 >>
 
 
-hddc2b-call-force-solver-sc2(solver) ::= <<
+hddc2b-call-force-solver-hddc2b_example_frc_sc2(solver) ::= <<
 hddc2b_pltf_drv_algn_dst(NUM_DRIVES, drive_attachment, w_align, kelo_msr.pvt_pos, f_platform, &f_drive[1], 2);
 hddc2b_drv_frc_pvt_to_gnd(NUM_DRIVES, wheel_distance, castor_offset, f_drive, f_wheel);
 hddc2b_whl_frc_gnd_to_hub(NUM_DRIVES, wheel_diameter, f_wheel, kelo_cmd.trq);
+>>
+
+hddc2b-call-force-solver(solver) ::= <<
+<({hddc2b-call-force-solver-<solver.configuration>})(solver)>
 >>
 
 
