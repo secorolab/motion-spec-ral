@@ -104,7 +104,7 @@ The following dependencies are required to build and execute the generated code:
   * `urdfdom_headers <https://github.com/ros/urdfdom_headers>`_
   * `urdfdom <https://github.com/ros/urdfdom>`_
   * `robif2b <https://github.com/rosym-project/robif2b>`_
-  * `hddc2b <https://github.com/comp-rob2b/hddc2b>`_
+  * `hddc2b <https://github.com/comp-rob2b/hddc2b/tree/primary-secondary-task>`_
 
 Make sure that the latter dependencies are accessible to the generated CMake script. That can be achieved via a local or system-wide installation, but also using CMake's package registry (to avoid the installation). To this end, both projects can be configured with a ``-DENABLE_PACKAGE_REGISTRY=On`` option.
 
