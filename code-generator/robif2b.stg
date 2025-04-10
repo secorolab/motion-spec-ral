@@ -38,6 +38,19 @@ for (int i = 0; i \< NUM_DRIVES; i++) {
 >>
 
 robif2b-define-ethercat() ::= <<
+void *input_array[NUM_SLAVES] = {
+    &ecat_comm.drv_msr_pdo[0],
+    &ecat_comm.drv_msr_pdo[1],
+    &ecat_comm.drv_msr_pdo[2],
+    &ecat_comm.drv_msr_pdo[3]
+};
+const void *output_array[NUM_SLAVES] = {
+    &ecat_comm.drv_cmd_pdo[0],
+    &ecat_comm.drv_cmd_pdo[1],
+    &ecat_comm.drv_cmd_pdo[2],
+    &ecat_comm.drv_cmd_pdo[3]
+};
+
 robif2b_ethercat ecat;
 ecat.ethernet_if        = &ecat_state.ethernet_if[0];
 ecat.num_exposed_slaves = &ecat_state.num_exposed_slaves;
@@ -50,18 +63,8 @@ ecat.error_code         = &ecat_state.error_code;
 ecat.num_initial_slaves = &ecat_state.num_found_slaves;
 ecat.num_current_slaves = &ecat_state.num_active_slaves;
 ecat.is_connected       = &ecat_state.is_connected[0];
-ecat.input = (void *[NUM_SLAVES]) {
-    &ecat_comm.drv_msr_pdo[0],
-    &ecat_comm.drv_msr_pdo[1],
-    &ecat_comm.drv_msr_pdo[2],
-    &ecat_comm.drv_msr_pdo[3]
-};
-ecat.output = (const void *[NUM_SLAVES]) {
-    &ecat_comm.drv_cmd_pdo[0],
-    &ecat_comm.drv_cmd_pdo[1],
-    &ecat_comm.drv_cmd_pdo[2],
-    &ecat_comm.drv_cmd_pdo[3]
-};
+ecat.input              = input_array;
+ecat.output             = output_array;
 >>
 
 robif2b-configure-ethercat() ::= <<
