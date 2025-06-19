@@ -706,6 +706,29 @@ The associated model of this computation is as follows:
         "wrench": "wrench-rightarm-dist-platform"
     }
 
+Real-world demo
+===============
+
+Robot performing alignment to a table.
+--------------------------------------
+
+**Scenario 1:** Aligning with an actively-controlled mobile base while the arms only maintain contact with the table’s edge similar to whiskers.
+
+.. raw:: html
+
+    <video width="640" height="480" controls style="margin-top: -4em; margin-bottom: 2em;">
+      <source src="_static/sc1-push-back.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+
+**Scenario 2:** Aligning through forces exerted by the arms to the table while the base remains passive.
+
+.. raw:: html
+
+    <video width="640" height="480" controls style="margin-top: -4em; margin-bottom: 2em;">
+      <source src="_static/sc2-push-back.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
 
 Discussion
 ==========
