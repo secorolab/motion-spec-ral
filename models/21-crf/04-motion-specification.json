@@ -1,0 +1,39 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "motion-find",
+            "@type": "GuardedMotion",
+            "when": [],
+            "while": [
+                "cstr-angvel-find"
+            ],
+            "until": [
+                "cstr-rotation-find",
+                "cstr-torque-find-shutoff",
+                "cstr-torque-find-upper-limit"
+            ]
+        },
+        {
+            "@id": "motion-loosen-to-angle",
+            "@type": "GuardedMotion",
+            "when": [
+                "cstr-torque-loosen-contact"
+            ],
+            "while": [
+                "cstr-angvel-loosen"
+            ],
+            "until": [
+                "cstr-rotation-loosen-bilateral",
+                "cstr-torque-loosen-bilateral"
+            ]
+        }
+    ]
+}

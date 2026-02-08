@@ -1,0 +1,75 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+        "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "eval-angvel-find",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-find",
+            "error": "angvel-ee-z-err-find"
+        },
+        {
+            "@id": "ctrl-angvel-find",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-ee-z-err-find",
+            "control-signal": "eacc-find-rotation",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "0.5"
+        },
+        {
+            "@id": "eval-angvel-loosen",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-loosen",
+            "error": "angvel-ee-z-err-loosen"
+        },
+        {
+            "@id": "ctrl-angvel-loosen",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-ee-z-err-loosen",
+            "control-signal": "eacc-loosen-rotation",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "0.5"
+        },
+        {
+            "@id": "handler-find",
+            "@type": "ConstraintHandler",
+            "motion": "motion-find",
+            "evaluators": [
+                "eval-angvel-find"
+            ],
+            "monitors": [
+                "cstr-rotation-find",
+                "cstr-torque-find-shutoff",
+                "cstr-torque-find-upper-limit"
+            ],
+            "controllers": [
+                "ctrl-angvel-find"
+            ]
+        },
+        {
+            "@id": "handler-loosen",
+            "@type": "ConstraintHandler",
+            "motion": "motion-loosen-to-angle",
+            "evaluators": [
+                "eval-angvel-loosen"
+            ],
+            "monitors": [
+                "cstr-rotation-loosen-bilateral",
+                "cstr-torque-loosen-contact",
+                "cstr-torque-loosen-bilateral"
+            ],
+            "controllers": [
+                "ctrl-angvel-loosen"
+            ]
+        }
+    ]
+}

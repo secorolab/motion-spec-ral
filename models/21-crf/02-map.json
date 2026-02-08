@@ -1,0 +1,48 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/map.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "view-angvel-ee-z",
+            "@type": [ "View", "VelocityTwistCoordinateView" ],
+            "superobject": "twist-ee-ee",
+            "subobject": "angvel-ee-z",
+            "subspace": "angular-velocity",
+            "axis": "z"
+        },
+        {
+            "@id": "view-torque-ee-z",
+            "@type": [ "View", "WrenchCoordinateView" ],
+            "superobject": "wrench-ee-ee",
+            "subobject": "torque-ee-z",
+            "subspace": "torque",
+            "axis": "z"
+        },
+        {
+            "@id": "view-rot-ee-z",
+            "@type": [ "View", "PoseCoordinateView" ],
+            "superobject": "pose-ee-world",
+            "subobject": "rotation-ee-z",
+            "subspace": "orientation",
+            "axis": "z"
+        },
+        {
+            "@id": "compute-rotation-find",
+            "@type": "ComputeRotationFromPose",
+            "pose": "pose-ee-world",
+            "rotation": "rotation-find"
+        },
+        {
+            "@id": "compute-rotation-loosen",
+            "@type": "ComputeRotationFromPose",
+            "pose": "pose-ee-world",
+            "rotation": "rotation-loosen"
+        }
+    ]
+}

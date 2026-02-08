@@ -1,0 +1,44 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/geometry/structural-entities.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "point-ee-origin",
+            "@type": "Point"
+        },
+        {
+            "@id": "frame-ee",
+            "@type": "Frame"
+        },
+        {
+            "@id": "frame-world",
+            "@type": "Frame"
+        },
+        {
+            "@id": "frame-base",
+            "@type": "Frame"
+        },
+        {
+            "@id": "link-ee",
+            "@type": "SimplicialComplex"
+        },
+        {
+            "@id": "link-world",
+            "@type": "SimplicialComplex"
+        },
+        {
+            "@id": "chain-arm",
+            "@type": "KinematicChain"
+        },
+        {
+            "@id": "earth-uniform-gravitational-field",
+            "@type": "UniformGravitationalField"
+        }
+    ]
+}

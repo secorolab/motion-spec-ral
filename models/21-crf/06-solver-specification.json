@@ -1,0 +1,76 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/solver-specification.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "spec-torque-find",
+            "@type": "TorqueSpecification",
+            "torque": "torque-ctrl-find",
+            "attached-to": "link-ee"
+        },
+        {
+            "@id": "spec-torque-loosen",
+            "@type": "TorqueSpecification",
+            "torque": "torque-ctrl-loosen",
+            "attached-to": "link-ee"
+        },
+        {
+            "@id": "drv-find",
+            "@type": "MotionDrivers",
+            "joint-force": [
+                "spec-torque-find"
+            ],
+            "prioritization-hierarchy": [
+                "prio-find"
+            ]
+        },
+        {
+            "@id": "drv-loosen",
+            "@type": "MotionDrivers",
+            "joint-force": [
+                "spec-torque-loosen"
+            ],
+            "prioritization-hierarchy": [
+                "prio-loosen"
+            ]
+        },
+        {
+            "@id": "prio-find",
+            "@type": "PrioritizationLevel",
+            "motion-drivers": [
+                "spec-torque-find"
+            ]
+        },
+        {
+            "@id": "prio-loosen",
+            "@type": "PrioritizationLevel",
+            "motion-drivers": [
+                "spec-torque-loosen"
+            ]
+        },
+        {
+            "@id": "slv-find",
+            "@type": "SolverWithInputAndOutput",
+            "motion-drivers": [ "drv-find" ],
+            "kinematic-chain": "chain-arm",
+            "root": "frame-base",
+            "gravity": "earth-uniform-gravitational-field",
+            "solver": "HybridDynamicsAlgorithm"
+        },
+        {
+            "@id": "slv-loosen",
+            "@type": "SolverWithInputAndOutput",
+            "motion-drivers": [ "drv-loosen" ],
+            "kinematic-chain": "chain-arm",
+            "root": "frame-base",
+            "gravity": "earth-uniform-gravitational-field",
+            "solver": "HybridDynamicsAlgorithm"
+        }
+    ]
+}

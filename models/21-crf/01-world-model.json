@@ -1,0 +1,193 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/geometry/structural-entities.json",
+        "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/structural-entities.json",
+        "https://comp-rob2b.github.io/metamodels/newtonian-rigid-body-dynamics/coordinates.json",
+        "https://comp-rob2b.github.io/metamodels/qudt.json",
+        "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
+        "https://comp-rob2b.github.io/metamodels/task/motion-specification.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "twist-ee-ee",
+            "@type": [ "VelocityTwist", "VelocityTwistCoordinate", "VectorXYZ" ],
+            "of": "link-ee",
+            "with-respect-to": "link-world",
+            "reference-point": "point-ee-origin",
+            "as-seen-by": "frame-ee",
+            "quantity-kind": [ "AngularVelocity", "LinearVelocity" ],
+            "unit": [ "RAD-PER-SEC", "M-PER-SEC" ]
+        },
+        {
+            "@id": "wrench-ee-ee",
+            "@type": [ "Wrench", "WrenchCoordinate", "VectorXYZ" ],
+            "quantity-kind": [ "Torque", "Force" ],
+            "reference-point": "point-ee-origin",
+            "as-seen-by": "frame-ee",
+            "unit": [ "N-M", "N" ]
+        },
+        {
+            "@id": "pose-ee-world",
+            "@type": [ "Pose", "PoseCoordinate", "DirectionCosineXYZ", "VectorXYZ" ],
+            "of": "frame-ee",
+            "with-respect-to": "frame-world",
+            "quantity-kind": [ "PlaneAngle", "Length" ],
+            "as-seen-by": "frame-world",
+            "unit": [ "UNITLESS", "M" ]
+        },
+        {
+            "@id": "angvel-ee-z",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-z-ref-find",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC",
+            "value": "1.0"
+        },
+        {
+            "@id": "angvel-ee-z-ref-loosen",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC",
+            "value": "-1.0"
+        },
+        {
+            "@id": "angvel-ee-z-err-find",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-z-err-loosen",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "torque-ee-z",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M"
+        },
+        {
+            "@id": "rotation-find",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD"
+        },
+        {
+            "@id": "rotation-find-ref",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD",
+            "value": "2.0944"
+        },
+        {
+            "@id": "rotation-find-err",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD"
+        },
+        {
+            "@id": "rotation-find-shutoff-angle",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD",
+            "value": "2.0944"
+        },
+        {
+            "@id": "rotation-loosen",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD"
+        },
+        {
+            "@id": "rotation-loosen-lower",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD",
+            "value": "1.4835"
+        },
+        {
+            "@id": "rotation-loosen-upper",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD",
+            "value": "1.6581"
+        },
+        {
+            "@id": "rotation-loosen-err",
+            "@type": [ "Quantity", "PlaneAngle" ],
+            "quantity-kind": "PlaneAngle",
+            "unit": "RAD"
+        },
+        {
+            "@id": "torque-find",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M"
+        },
+        {
+            "@id": "torque-find-shutoff",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M",
+            "value": "4.0"
+        },
+        {
+            "@id": "torque-find-upper-limit",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M",
+            "value": "12.0"
+        },
+        {
+            "@id": "eacc-find-rotation",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "torque-loosen",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M"
+        },
+        {
+            "@id": "torque-loosen-min-contact",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M",
+            "value": "0.05"
+        },
+        {
+            "@id": "torque-loosen-lower",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M",
+            "value": "0.05"
+        },
+        {
+            "@id": "torque-loosen-upper",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M",
+            "value": "8.4"
+        },
+        {
+            "@id": "eacc-loosen-rotation",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "license": "https://github.com/aws/mit-0",
+    "@context": [
+        "https://comp-rob2b.github.io/metamodels/task/constraint.json",
+        {
+            "@base": "https://secorolab.github.io/models/crf/"
+        }
+    ],
+    "@id": "https://secorolab.github.io/models/crf/",
+    "@graph": [
+        {
+            "@id": "cstr-angvel-find",
+            "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
+            "quantity": "angvel-ee-z",
+            "reference-value": "angvel-ee-z-ref-find"
+        },
+        {
+            "@id": "cstr-rotation-find",
+            "@type": [ "Constraint", "EqualityConstraint", "AngleConstraint" ],
+            "quantity": "rotation-find",
+            "reference-value": "rotation-find-ref"
+        },
+        {
+            "@id": "cstr-torque-find-shutoff",
+            "@type": [ "Constraint", "InequalityConstraint", "GreaterThan", "TorqueConstraint" ],
+            "quantity": "torque-find",
+            "upper-threshold": "torque-find-shutoff"
+        },
+        {
+            "@id": "cstr-torque-find-upper-limit",
+            "@type": [ "Constraint", "InequalityConstraint", "GreaterThan", "TorqueConstraint" ],
+            "quantity": "torque-find",
+            "upper-threshold": "torque-find-upper-limit"
+        },
+        {
+            "@id": "cstr-angvel-loosen",
+            "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
+            "quantity": "angvel-ee-z",
+            "reference-value": "angvel-ee-z-ref-loosen"
+        },
+        {
+            "@id": "cstr-rotation-loosen-bilateral",
+            "@type": [ "Constraint", "BilateralConstraint", "AngleConstraint" ],
+            "quantity": "rotation-loosen",
+            "lower-threshold": "rotation-loosen-lower",
+            "upper-threshold": "rotation-loosen-upper"
+        },
+        {
+            "@id": "cstr-torque-loosen-bilateral",
+            "@type": [ "Constraint", "BilateralConstraint", "TorqueConstraint" ],
+            "quantity": "torque-loosen",
+            "lower-threshold": "torque-loosen-lower",
+            "upper-threshold": "torque-loosen-upper"
+        },
+        {
+            "@id": "cstr-torque-loosen-contact",
+            "@type": [ "Constraint", "InequalityConstraint", "LessThan", "TorqueConstraint" ],
+            "quantity": "torque-loosen",
+            "lower-threshold": "torque-loosen-min-contact"
+        }
+    ]
+}
