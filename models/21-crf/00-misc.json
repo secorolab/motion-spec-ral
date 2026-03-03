@@ -21,10 +21,6 @@
             "@type": "Frame"
         },
         {
-            "@id": "frame-base",
-            "@type": "Frame"
-        },
-        {
             "@id": "link-ee",
             "@type": "SimplicialComplex"
         },

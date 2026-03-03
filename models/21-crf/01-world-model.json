@@ -13,6 +13,7 @@
     ],
     "@id": "https://secorolab.github.io/models/crf/",
     "@graph": [
+
         {
             "@id": "twist-ee-ee",
             "@type": [ "VelocityTwist", "VelocityTwistCoordinate", "VectorXYZ" ],
@@ -40,12 +41,50 @@
             "as-seen-by": "frame-world",
             "unit": [ "UNITLESS", "M" ]
         },
+
         {
             "@id": "angvel-ee-z",
             "@type": [ "Quantity", "AngularVelocity" ],
             "quantity-kind": "AngularVelocity",
             "unit": "RAD-PER-SEC"
         },
+        {
+            "@id": "angvel-ee-x",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-y",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-x",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-y",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-z",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "torque-ee-z",
+            "@type": [ "Quantity", "Torque" ],
+            "quantity-kind": "Torque",
+            "unit": "N-M"
+        },
+
         {
             "@id": "angvel-ee-z-ref-find",
             "@type": [ "Quantity", "AngularVelocity" ],
@@ -61,23 +100,20 @@
             "value": "-1.0"
         },
         {
-            "@id": "angvel-ee-z-err-find",
+            "@id": "angvel-zero-ref",
             "@type": [ "Quantity", "AngularVelocity" ],
             "quantity-kind": "AngularVelocity",
-            "unit": "RAD-PER-SEC"
+            "unit": "RAD-PER-SEC",
+            "value": "0.0"
         },
         {
-            "@id": "angvel-ee-z-err-loosen",
-            "@type": [ "Quantity", "AngularVelocity" ],
-            "quantity-kind": "AngularVelocity",
-            "unit": "RAD-PER-SEC"
+            "@id": "linvel-zero-ref",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC",
+            "value": "0.0"
         },
-        {
-            "@id": "torque-ee-z",
-            "@type": [ "Quantity", "Torque" ],
-            "quantity-kind": "Torque",
-            "unit": "N-M"
-        },
+
         {
             "@id": "rotation-find",
             "@type": [ "Quantity", "PlaneAngle" ],
@@ -85,20 +121,7 @@
             "unit": "RAD"
         },
         {
-            "@id": "rotation-find-ref",
-            "@type": [ "Quantity", "PlaneAngle" ],
-            "quantity-kind": "PlaneAngle",
-            "unit": "RAD",
-            "value": "2.0944"
-        },
-        {
-            "@id": "rotation-find-err",
-            "@type": [ "Quantity", "PlaneAngle" ],
-            "quantity-kind": "PlaneAngle",
-            "unit": "RAD"
-        },
-        {
-            "@id": "rotation-find-shutoff-angle",
+            "@id": "rotation-find-limit",
             "@type": [ "Quantity", "PlaneAngle" ],
             "quantity-kind": "PlaneAngle",
             "unit": "RAD",
@@ -124,18 +147,7 @@
             "unit": "RAD",
             "value": "1.6581"
         },
-        {
-            "@id": "rotation-loosen-err",
-            "@type": [ "Quantity", "PlaneAngle" ],
-            "quantity-kind": "PlaneAngle",
-            "unit": "RAD"
-        },
-        {
-            "@id": "torque-find",
-            "@type": [ "Quantity", "Torque" ],
-            "quantity-kind": "Torque",
-            "unit": "N-M"
-        },
+
         {
             "@id": "torque-find-shutoff",
             "@type": [ "Quantity", "Torque" ],
@@ -151,23 +163,11 @@
             "value": "12.0"
         },
         {
-            "@id": "eacc-find-rotation",
-            "@type": [ "Quantity", "AccelerationEnergy" ],
-            "quantity-kind": "AccelerationEnergy",
-            "unit": "N-M2-PER-SEC2"
-        },
-        {
-            "@id": "torque-loosen",
-            "@type": [ "Quantity", "Torque" ],
-            "quantity-kind": "Torque",
-            "unit": "N-M"
-        },
-        {
             "@id": "torque-loosen-min-contact",
             "@type": [ "Quantity", "Torque" ],
             "quantity-kind": "Torque",
             "unit": "N-M",
-            "value": "0.05"
+            "value": "0.5"
         },
         {
             "@id": "torque-loosen-lower",
@@ -183,8 +183,88 @@
             "unit": "N-M",
             "value": "8.4"
         },
+
         {
-            "@id": "eacc-loosen-rotation",
+            "@id": "angvel-ee-z-err-find",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-z-err-loosen",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-x-err",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "angvel-ee-y-err",
+            "@type": [ "Quantity", "AngularVelocity" ],
+            "quantity-kind": "AngularVelocity",
+            "unit": "RAD-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-x-err",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-y-err",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+        {
+            "@id": "linvel-ee-z-err",
+            "@type": [ "Quantity", "LinearVelocity" ],
+            "quantity-kind": "LinearVelocity",
+            "unit": "M-PER-SEC"
+        },
+
+        {
+            "@id": "eacc-ang-z-find",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-ang-z-loosen",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-ang-x",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-ang-y",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-lin-x",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-lin-y",
+            "@type": [ "Quantity", "AccelerationEnergy" ],
+            "quantity-kind": "AccelerationEnergy",
+            "unit": "N-M2-PER-SEC2"
+        },
+        {
+            "@id": "eacc-lin-z",
             "@type": [ "Quantity", "AccelerationEnergy" ],
             "quantity-kind": "AccelerationEnergy",
             "unit": "N-M2-PER-SEC2"

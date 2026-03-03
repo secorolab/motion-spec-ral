@@ -1,7 +1,7 @@
 {
     "license": "https://github.com/aws/mit-0",
     "@context": [
-        "https://comp-rob2b.github.io/metamodels/task/solver-specification.json",
+        "https://comp-rob2b.github.io/metamodels/task/solver.json",
         {
             "@base": "https://secorolab.github.io/models/crf/"
         }
@@ -9,68 +9,135 @@
     "@id": "https://secorolab.github.io/models/crf/",
     "@graph": [
         {
-            "@id": "spec-torque-find",
-            "@type": "TorqueSpecification",
-            "torque": "torque-ctrl-find",
-            "attached-to": "link-ee"
+            "@id": "acc-cstr-ee-ang-z-find",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "z",
+            "acceleration-energy": "eacc-ang-z-find"
         },
         {
-            "@id": "spec-torque-loosen",
-            "@type": "TorqueSpecification",
-            "torque": "torque-ctrl-loosen",
-            "attached-to": "link-ee"
+            "@id": "acc-cstr-ee-ang-z-loosen",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "z",
+            "acceleration-energy": "eacc-ang-z-loosen"
         },
         {
-            "@id": "drv-find",
-            "@type": "MotionDrivers",
-            "joint-force": [
-                "spec-torque-find"
+            "@id": "acc-cstr-ee-ang-x",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "x",
+            "acceleration-energy": "eacc-ang-x"
+        },
+        {
+            "@id": "acc-cstr-ee-ang-y",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "angular-acceleration",
+            "axis": "y",
+            "acceleration-energy": "eacc-ang-y"
+        },
+        {
+            "@id": "acc-cstr-ee-lin-x",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "linear-acceleration",
+            "axis": "x",
+            "acceleration-energy": "eacc-lin-x"
+        },
+        {
+            "@id": "acc-cstr-ee-lin-y",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "linear-acceleration",
+            "axis": "y",
+            "acceleration-energy": "eacc-lin-y"
+        },
+        {
+            "@id": "acc-cstr-ee-lin-z",
+            "@type": [ "AccelerationConstraint", "AxisAligned" ],
+            "subspace": "linear-acceleration",
+            "axis": "z",
+            "acceleration-energy": "eacc-lin-z"
+        },
+
+        {
+            "@id": "spec-acc-ee-find",
+            "@type": "AccelerationConstraintSpecification",
+            "constraints": [
+                "acc-cstr-ee-ang-z-find",
+                "acc-cstr-ee-ang-x",
+                "acc-cstr-ee-ang-y",
+                "acc-cstr-ee-lin-x",
+                "acc-cstr-ee-lin-y",
+                "acc-cstr-ee-lin-z"
             ],
+            "attached-to": "link-ee"
+        },
+        {
+            "@id": "spec-acc-ee-loosen",
+            "@type": "AccelerationConstraintSpecification",
+            "constraints": [
+                "acc-cstr-ee-ang-z-loosen",
+                "acc-cstr-ee-ang-x",
+                "acc-cstr-ee-ang-y",
+                "acc-cstr-ee-lin-x",
+                "acc-cstr-ee-lin-y",
+                "acc-cstr-ee-lin-z"
+            ],
+            "attached-to": "link-ee"
+        },
+
+        {
+            "@id": "drv-arm-find",
+            "@type": "MotionDrivers",
+            "acceleration-constraint": [
+                "spec-acc-ee-find"
+            ],
+            "cartesian-force": [],
+            "joint-force": [],
             "prioritization-hierarchy": [
                 "prio-find"
             ]
         },
         {
-            "@id": "drv-loosen",
+            "@id": "drv-arm-loosen",
             "@type": "MotionDrivers",
-            "joint-force": [
-                "spec-torque-loosen"
+            "acceleration-constraint": [
+                "spec-acc-ee-loosen"
             ],
+            "cartesian-force": [],
+            "joint-force": [],
             "prioritization-hierarchy": [
                 "prio-loosen"
             ]
         },
+
         {
             "@id": "prio-find",
             "@type": "PrioritizationLevel",
             "motion-drivers": [
-                "spec-torque-find"
+                "spec-acc-ee-find"
             ]
         },
         {
             "@id": "prio-loosen",
             "@type": "PrioritizationLevel",
             "motion-drivers": [
-                "spec-torque-loosen"
+                "spec-acc-ee-loosen"
             ]
         },
+
         {
-            "@id": "slv-find",
+            "@id": "slv-arm",
             "@type": "SolverWithInputAndOutput",
-            "motion-drivers": [ "drv-find" ],
+            "motion-drivers": [ "drv-arm-find", "drv-arm-loosen" ],
+            "output": [
+                "pose-ee-world",
+                "twist-ee-ee",
+                "wrench-ee-ee"
+            ],
             "kinematic-chain": "chain-arm",
-            "root": "frame-base",
+            "root": "frame-world",
             "gravity": "earth-uniform-gravitational-field",
-            "solver": "HybridDynamicsAlgorithm"
-        },
-        {
-            "@id": "slv-loosen",
-            "@type": "SolverWithInputAndOutput",
-            "motion-drivers": [ "drv-loosen" ],
-            "kinematic-chain": "chain-arm",
-            "root": "frame-base",
-            "gravity": "earth-uniform-gravitational-field",
-            "solver": "HybridDynamicsAlgorithm"
+            "solver": "AccelerationConstrainedHybridDynamicsAlgorithm"
         }
     ]
 }

@@ -1,7 +1,6 @@
 {
     "license": "https://github.com/aws/mit-0",
     "@context": [
-        "https://comp-rob2b.github.io/metamodels/qudt-quant.json",
         "https://comp-rob2b.github.io/metamodels/task/constraint-handler.json",
         {
             "@base": "https://secorolab.github.io/models/crf/"
@@ -9,20 +8,12 @@
     ],
     "@id": "https://secorolab.github.io/models/crf/",
     "@graph": [
+
         {
             "@id": "eval-angvel-find",
             "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
             "constraint": "cstr-angvel-find",
             "error": "angvel-ee-z-err-find"
-        },
-        {
-            "@id": "ctrl-angvel-find",
-            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
-            "error-signal": "angvel-ee-z-err-find",
-            "control-signal": "eacc-find-rotation",
-            "proportional-gain": "5.0",
-            "integral-gain": "1.0",
-            "derivative-gain": "0.5"
         },
         {
             "@id": "eval-angvel-loosen",
@@ -31,44 +22,180 @@
             "error": "angvel-ee-z-err-loosen"
         },
         {
+            "@id": "eval-linvel-ee-x-zero",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-linvel-ee-x-zero",
+            "error": "linvel-ee-x-err"
+        },
+        {
+            "@id": "eval-linvel-ee-y-zero",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-linvel-ee-y-zero",
+            "error": "linvel-ee-y-err"
+        },
+        {
+            "@id": "eval-linvel-ee-z-zero",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-linvel-ee-z-zero",
+            "error": "linvel-ee-z-err"
+        },
+        {
+            "@id": "eval-angvel-ee-x-zero",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-ee-x-zero",
+            "error": "angvel-ee-x-err"
+        },
+        {
+            "@id": "eval-angvel-ee-y-zero",
+            "@type": [ "ConstraintEvaluator", "ErrorEvaluator" ],
+            "constraint": "cstr-angvel-ee-y-zero",
+            "error": "angvel-ee-y-err"
+        },
+
+        {
+            "@id": "ctrl-angvel-find",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-ee-z-err-find",
+            "control-signal": "eacc-ang-z-find",
+            "proportional-gain": "8.0",
+            "integral-gain": "0.5",
+            "derivative-gain": "3.0"
+        },
+        {
             "@id": "ctrl-angvel-loosen",
             "@type": [ "Controller", "ProportionalIntegralDerivative" ],
             "error-signal": "angvel-ee-z-err-loosen",
-            "control-signal": "eacc-loosen-rotation",
+            "control-signal": "eacc-ang-z-loosen",
+            "proportional-gain": "8.0",
+            "integral-gain": "0.5",
+            "derivative-gain": "3.0"
+        },
+        {
+            "@id": "ctrl-linvel-ee-x-zero",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "linvel-ee-x-err",
+            "control-signal": "eacc-lin-x",
             "proportional-gain": "5.0",
             "integral-gain": "1.0",
-            "derivative-gain": "0.5"
+            "derivative-gain": "3.0"
         },
+        {
+            "@id": "ctrl-linvel-ee-y-zero",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "linvel-ee-y-err",
+            "control-signal": "eacc-lin-y",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+        {
+            "@id": "ctrl-linvel-ee-z-zero",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "linvel-ee-z-err",
+            "control-signal": "eacc-lin-z",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+        {
+            "@id": "ctrl-angvel-ee-x-zero",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-ee-x-err",
+            "control-signal": "eacc-ang-x",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+        {
+            "@id": "ctrl-angvel-ee-y-zero",
+            "@type": [ "Controller", "ProportionalIntegralDerivative" ],
+            "error-signal": "angvel-ee-y-err",
+            "control-signal": "eacc-ang-y",
+            "proportional-gain": "5.0",
+            "integral-gain": "1.0",
+            "derivative-gain": "3.0"
+        },
+
+        {
+            "@id": "mon-torque-find-shutoff",
+            "@type": [ "ConstraintMonitor", "ThresholdMonitor" ],
+            "constraint": "cstr-torque-find-shutoff",
+            "quantity": "torque-ee-z"
+        },
+        {
+            "@id": "mon-rotation-find-limit",
+            "@type": [ "ConstraintMonitor", "ThresholdMonitor" ],
+            "constraint": "cstr-rotation-find-limit",
+            "quantity": "rotation-find"
+        },
+        {
+            "@id": "mon-torque-find-upper-limit",
+            "@type": [ "ConstraintMonitor", "ThresholdMonitor" ],
+            "constraint": "cstr-torque-find-upper-limit",
+            "quantity": "torque-ee-z"
+        },
+        {
+            "@id": "mon-rotation-loosen",
+            "@type": [ "ConstraintMonitor", "ThresholdMonitor" ],
+            "constraint": "cstr-rotation-loosen-bilateral",
+            "quantity": "rotation-loosen"
+        },
+        {
+            "@id": "mon-torque-loosen",
+            "@type": [ "ConstraintMonitor", "ThresholdMonitor" ],
+            "constraint": "cstr-torque-loosen-bilateral",
+            "quantity": "torque-ee-z"
+        },
+
         {
             "@id": "handler-find",
             "@type": "ConstraintHandler",
             "motion": "motion-find",
             "evaluators": [
-                "eval-angvel-find"
+                "eval-angvel-find",
+                "eval-linvel-ee-x-zero",
+                "eval-linvel-ee-y-zero",
+                "eval-linvel-ee-z-zero",
+                "eval-angvel-ee-x-zero",
+                "eval-angvel-ee-y-zero"
             ],
             "monitors": [
-                "cstr-rotation-find",
-                "cstr-torque-find-shutoff",
-                "cstr-torque-find-upper-limit"
+                "mon-torque-find-shutoff",
+                "mon-rotation-find-limit",
+                "mon-torque-find-upper-limit"
             ],
             "controllers": [
-                "ctrl-angvel-find"
+                "ctrl-angvel-find",
+                "ctrl-linvel-ee-x-zero",
+                "ctrl-linvel-ee-y-zero",
+                "ctrl-linvel-ee-z-zero",
+                "ctrl-angvel-ee-x-zero",
+                "ctrl-angvel-ee-y-zero"
             ]
         },
         {
             "@id": "handler-loosen",
             "@type": "ConstraintHandler",
-            "motion": "motion-loosen-to-angle",
+            "motion": "motion-loosen",
             "evaluators": [
-                "eval-angvel-loosen"
+                "eval-angvel-loosen",
+                "eval-linvel-ee-x-zero",
+                "eval-linvel-ee-y-zero",
+                "eval-linvel-ee-z-zero",
+                "eval-angvel-ee-x-zero",
+                "eval-angvel-ee-y-zero"
             ],
             "monitors": [
-                "cstr-rotation-loosen-bilateral",
-                "cstr-torque-loosen-contact",
-                "cstr-torque-loosen-bilateral"
+                "mon-rotation-loosen",
+                "mon-torque-loosen"
             ],
             "controllers": [
-                "ctrl-angvel-loosen"
+                "ctrl-angvel-loosen",
+                "ctrl-linvel-ee-x-zero",
+                "ctrl-linvel-ee-y-zero",
+                "ctrl-linvel-ee-z-zero",
+                "ctrl-angvel-ee-x-zero",
+                "ctrl-angvel-ee-y-zero"
             ]
         }
     ]

@@ -8,6 +8,7 @@
     ],
     "@id": "https://secorolab.github.io/models/crf/",
     "@graph": [
+
         {
             "@id": "cstr-angvel-find",
             "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
@@ -15,28 +16,67 @@
             "reference-value": "angvel-ee-z-ref-find"
         },
         {
-            "@id": "cstr-rotation-find",
-            "@type": [ "Constraint", "EqualityConstraint", "AngleConstraint" ],
-            "quantity": "rotation-find",
-            "reference-value": "rotation-find-ref"
-        },
-        {
-            "@id": "cstr-torque-find-shutoff",
-            "@type": [ "Constraint", "InequalityConstraint", "GreaterThan", "TorqueConstraint" ],
-            "quantity": "torque-find",
-            "upper-threshold": "torque-find-shutoff"
-        },
-        {
-            "@id": "cstr-torque-find-upper-limit",
-            "@type": [ "Constraint", "InequalityConstraint", "GreaterThan", "TorqueConstraint" ],
-            "quantity": "torque-find",
-            "upper-threshold": "torque-find-upper-limit"
-        },
-        {
             "@id": "cstr-angvel-loosen",
             "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
             "quantity": "angvel-ee-z",
             "reference-value": "angvel-ee-z-ref-loosen"
+        },
+
+        {
+            "@id": "cstr-linvel-ee-x-zero",
+            "@type": [ "Constraint", "EqualityConstraint", "LinearVelocityConstraint" ],
+            "quantity": "linvel-ee-x",
+            "reference-value": "linvel-zero-ref"
+        },
+        {
+            "@id": "cstr-linvel-ee-y-zero",
+            "@type": [ "Constraint", "EqualityConstraint", "LinearVelocityConstraint" ],
+            "quantity": "linvel-ee-y",
+            "reference-value": "linvel-zero-ref"
+        },
+        {
+            "@id": "cstr-linvel-ee-z-zero",
+            "@type": [ "Constraint", "EqualityConstraint", "LinearVelocityConstraint" ],
+            "quantity": "linvel-ee-z",
+            "reference-value": "linvel-zero-ref"
+        },
+        {
+            "@id": "cstr-angvel-ee-x-zero",
+            "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
+            "quantity": "angvel-ee-x",
+            "reference-value": "angvel-zero-ref"
+        },
+        {
+            "@id": "cstr-angvel-ee-y-zero",
+            "@type": [ "Constraint", "EqualityConstraint", "AngularVelocityConstraint" ],
+            "quantity": "angvel-ee-y",
+            "reference-value": "angvel-zero-ref"
+        },
+
+        {
+            "@id": "cstr-torque-find-shutoff",
+            "@type": [ "Constraint", "UnilateralConstraint", "TorqueConstraint" ],
+            "quantity": "torque-ee-z",
+            "lower-threshold": "torque-find-shutoff"
+        },
+        {
+            "@id": "cstr-rotation-find-limit",
+            "@type": [ "Constraint", "UnilateralConstraint", "AngleConstraint" ],
+            "quantity": "rotation-find",
+            "lower-threshold": "rotation-find-limit"
+        },
+        {
+            "@id": "cstr-torque-find-upper-limit",
+            "@type": [ "Constraint", "UnilateralConstraint", "TorqueConstraint" ],
+            "quantity": "torque-ee-z",
+            "lower-threshold": "torque-find-upper-limit"
+        },
+
+        {
+            "@id": "cstr-torque-loosen-contact",
+            "@type": [ "Constraint", "UnilateralConstraint", "TorqueConstraint" ],
+            "quantity": "torque-ee-z",
+            "lower-threshold": "torque-loosen-min-contact"
         },
         {
             "@id": "cstr-rotation-loosen-bilateral",
@@ -48,15 +88,9 @@
         {
             "@id": "cstr-torque-loosen-bilateral",
             "@type": [ "Constraint", "BilateralConstraint", "TorqueConstraint" ],
-            "quantity": "torque-loosen",
+            "quantity": "torque-ee-z",
             "lower-threshold": "torque-loosen-lower",
             "upper-threshold": "torque-loosen-upper"
-        },
-        {
-            "@id": "cstr-torque-loosen-contact",
-            "@type": [ "Constraint", "InequalityConstraint", "LessThan", "TorqueConstraint" ],
-            "quantity": "torque-loosen",
-            "lower-threshold": "torque-loosen-min-contact"
         }
     ]
 }

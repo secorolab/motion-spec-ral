@@ -13,22 +13,32 @@
             "@type": "GuardedMotion",
             "when": [],
             "while": [
-                "cstr-angvel-find"
+                "cstr-angvel-find",
+                "cstr-linvel-ee-x-zero",
+                "cstr-linvel-ee-y-zero",
+                "cstr-linvel-ee-z-zero",
+                "cstr-angvel-ee-x-zero",
+                "cstr-angvel-ee-y-zero"
             ],
             "until": [
-                "cstr-rotation-find",
                 "cstr-torque-find-shutoff",
+                "cstr-rotation-find-limit",
                 "cstr-torque-find-upper-limit"
             ]
         },
         {
-            "@id": "motion-loosen-to-angle",
+            "@id": "motion-loosen",
             "@type": "GuardedMotion",
             "when": [
                 "cstr-torque-loosen-contact"
             ],
             "while": [
-                "cstr-angvel-loosen"
+                "cstr-angvel-loosen",
+                "cstr-linvel-ee-x-zero",
+                "cstr-linvel-ee-y-zero",
+                "cstr-linvel-ee-z-zero",
+                "cstr-angvel-ee-x-zero",
+                "cstr-angvel-ee-y-zero"
             ],
             "until": [
                 "cstr-rotation-loosen-bilateral",
